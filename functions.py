@@ -19,65 +19,72 @@ def extractMovingCellFromGrid(grid):
         return MovingPoints
 def onpress(levelPatch,update):
 
+    print("press w to move above,\npress s to move down,\npress d to move right,\npress a to move left\npress q to exit\n\n")
     while True: 
-      select=input("press w to move above,\npress s to move down,\npress d to move right,\npress a to move left\npress q to exit\n\n")
+      select=input()
       if select=="w":
-        update,win=  levelPatch.moveAbove()
-        levelPatchToEqual=copy.deepcopy(levelPatch)
-        levelPatch=update
-        if win ==True:
-         break
-        levelPatch.print_patch()
-       
+          update=  levelPatch.moveAbove()
+          levelPatchToEqual=copy.deepcopy(levelPatch)
+          levelPatch=update
+          levelPatch.print_patch()
+          if levelPatch.checkWin()==True:         
+            print("graduation 🚀🚀🚀")
+            break
       if select=="s":
-        update,win= levelPatch.moveDown()
-        levelPatchToEqual=copy.deepcopy(levelPatch)
-        levelPatch=update
-        if win ==True:
-         break
-        levelPatch.print_patch()
-      if select=="d":
-        update,win= levelPatch.moveRight()
-        levelPatchToEqual=copy.deepcopy(levelPatch)
-        levelPatch=update
-        if win ==True:
-         break
-        levelPatch.print_patch()
+          update=  levelPatch.moveDown()
+          levelPatchToEqual=copy.deepcopy(levelPatch)
+          levelPatch=update
+          levelPatch.print_patch()
+          if levelPatch.checkWin()==True:
+            
+            print("graduation 🚀🚀🚀")
+            break 
+
+      if select=="d":  
+
+          update=  levelPatch.moveRight()
+          levelPatchToEqual=copy.deepcopy(levelPatch)
+          levelPatch=update
+          levelPatch.print_patch()
+          if levelPatch.checkWin()==True:
+            
+            print("graduation 🚀🚀🚀")
+            break
+
+
 
       if select=="a":
-        update,win= levelPatch.moveLeft()
-        levelPatchToEqual=copy.deepcopy(levelPatch)
-        levelPatch=update
-        if win ==True:
-         break
-        levelPatch.print_patch() 
-      if select=="e":
-        getAllMoves(levelPatch) 
+
+          update=  levelPatch.moveLeft()
+          levelPatchToEqual=copy.deepcopy(levelPatch)
+          levelPatch=update
+          levelPatch.print_patch()
+          if levelPatch.checkWin()==True:
+            
+            print("graduation 🚀🚀🚀")
+            break
       if select=="=":
          checkEqualTwoStates(levelPatchToEqual,update)
       elif select=="q":
        break
-def getAllMoves(levelPatch):
+def getNextState(levelPatch):
+ listOfNextState=[]
  points =extractMovingCellFromGrid(levelPatch.grid)
  if True in levelPatch.checkMoveableAbove(points):
-   updated,_ =levelPatch.moveAbove()
-   print("state to move up")
-   updated.print_patch() 
+   updated =levelPatch.moveAbove()
+   listOfNextState.append(updated)
  if True in levelPatch.checkMoveableDown(points):
-     updated,_ =levelPatch.moveDown()
-     print("state to move down")
-     updated.print_patch() 
+     updated =levelPatch.moveDown()
+     listOfNextState.append(updated)
+    
  if True in levelPatch.checkMoveableRight(points):
-     updated,_ =levelPatch.moveRight()
-     print("state to move right")
-     updated.print_patch() 
- if True in levelPatch.checkMoveableLeft(points):
-     updated,_ =levelPatch.moveLeft()
-     print("state to move left")
-     updated.print_patch() 
+     updated =levelPatch.moveRight()
+     listOfNextState.append(updated)
 
- print("Basic state") 
- levelPatch.print_patch()
+ if True in levelPatch.checkMoveableLeft(points):
+     updated =levelPatch.moveLeft()
+     listOfNextState.append(updated)
+ return listOfNextState  
 def checkEqualTwoStates(levelPatch,updatedPatch):
  if levelPatch.grid == updatedPatch.grid :
      print("two state is equal")

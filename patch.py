@@ -53,9 +53,7 @@ class Patch:
        checkList  =  newPatch.checkMoveableAbove(points)
        points.sort(key=lambda x: (x is None, x) )
        resultList=dict( zip(points,checkList))
-    #    print("resultList in move above: ",resultList)
        for point, canMove in resultList.items():       
-            winORNot=False    
             if canMove:
                 x, y = point 
                 initCell = newPatch.grid[x][y]
@@ -77,13 +75,12 @@ class Patch:
                          newPatch.grid[x - 1][y] = "."
                          
                          initCell="."
-                         winORNot= newPatch.checkWin()
                 newPatch.grid[x][y] = initCell
      
-       return newPatch,winORNot
+       return newPatch
     def checkWin(self):
        if len(self.goalValues)==0:
-           print("graduation 🚀🚀🚀")
+       
            return True
        else:
            return False
@@ -97,7 +94,6 @@ class Patch:
        resultList=dict( zip(points,checkList))    
     #    print("resultList in move down: ",resultList)
        for point,canMove in resultList.items():
-          winOrNot=False
           if canMove: 
             x,y=point
             initCell= newPatch.grid[x][y]
@@ -116,9 +112,9 @@ class Patch:
                          del newPatch.goalValues[(x+1,y)]
                          newPatch.grid[x +1][y] = "."
                          initCell="."
-                         winOrNot=newPatch.checkWin()            
+                               
             newPatch.set_moving_cell(x,y,initCell)
-       return newPatch ,winOrNot
+       return newPatch 
 
     def moveLeft(self):
        newPatch = copy.deepcopy(self)
@@ -129,7 +125,7 @@ class Patch:
     #    print("resultList in move left: ",resultList)
 
        for point,canMove in resultList.items():
-          winOrNot=False          
+              
           if canMove: 
             x,y=point
             initCell= newPatch.grid[x][y]
@@ -150,9 +146,9 @@ class Patch:
                          newPatch.grid[x ][y-1] = "."
                          
                          initCell="."
-                         winOrNot= newPatch.checkWin()
+          
             newPatch.set_moving_cell(x,y,initCell)
-       return newPatch ,winOrNot
+       return newPatch 
        
     def moveRight(self):
        newPatch=copy.deepcopy(self)
@@ -162,7 +158,7 @@ class Patch:
        resultList=dict( zip(points,checkList))
     #    print("resultList in move right: ",resultList)
        for point,canMove in resultList.items():
-          winOrNot=False
+
           if canMove: 
             x,y=point
             initCell= newPatch.grid[x][y]
@@ -182,10 +178,10 @@ class Patch:
                          newPatch.grid[x ][y+1] = "."
                          
                          initCell="."
-                         winOrNot=newPatch.checkWin()  
+                 
             newPatch.set_moving_cell(x,y,initCell)
     
-       return newPatch,winOrNot
+       return newPatch
     def checkMoveableDown(self,points):
      resultCheck = []
      points.sort(key= lambda x:(x is None ,x),reverse=True)

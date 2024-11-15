@@ -227,8 +227,10 @@
 
 
 # print(len(ddd))    
-pointFromOldState=[[1,2],[3,4]]
-pointFromNewState=[[1,2],[34,4]]
+# pointFromOldState=[[1,2],[3,4]]
+# pointFromNewState=[[1,2],[34,4]]
      
-if pointFromNewState == pointFromOldState :
-        print("equal")
+# if pointFromNewState == pointFromOldState :
+#         print("equal")
+x="Ddd"
+print(x)
