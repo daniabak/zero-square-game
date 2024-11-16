@@ -232,5 +232,19 @@
      
 # if pointFromNewState == pointFromOldState :
 #         print("equal")
-x="Ddd"
-print(x)
+# x=[1,2,3]
+# if 1  in x :
+
+#  print(x)
+# from collections import deque
+# queue=deque([])
+# # # q.appendleft([5,5])
+# # for i in range(len(q)):
+# #  print("fffff")
+# nextStateList=[1,2,3,4]
+# # for v in range(len(nextStateList)):
+# #       queue.append( nextStateList.pop(0))   
+# nextStateList.reverse()
+# visitedList= [5,6,8,9,1] 
+# list(print(i) for i in range(len(visitedList)))
+[state.grid for state in visitedList]

@@ -6,7 +6,7 @@ class Patch:
         # m to column number
         #n to row number
         self.grid = [["." for _ in range(m)] for _ in range(n)]
-
+        self.parent =None
         self.goalValues={}
 
 

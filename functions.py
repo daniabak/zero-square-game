@@ -70,12 +70,6 @@ def onpress(levelPatch,update):
 def getNextState(levelPatch):
  listOfNextState=[]
  points =extractMovingCellFromGrid(levelPatch.grid)
- if True in levelPatch.checkMoveableAbove(points):
-   updated =levelPatch.moveAbove()
-   listOfNextState.append(updated)
- if True in levelPatch.checkMoveableDown(points):
-     updated =levelPatch.moveDown()
-     listOfNextState.append(updated)
     
  if True in levelPatch.checkMoveableRight(points):
      updated =levelPatch.moveRight()
@@ -83,6 +77,14 @@ def getNextState(levelPatch):
 
  if True in levelPatch.checkMoveableLeft(points):
      updated =levelPatch.moveLeft()
+     listOfNextState.append(updated)
+
+ if True in levelPatch.checkMoveableAbove(points):
+   updated =levelPatch.moveAbove()
+   listOfNextState.append(updated)
+   
+ if True in levelPatch.checkMoveableDown(points):
+     updated =levelPatch.moveDown()
      listOfNextState.append(updated)
  return listOfNextState  
 def checkEqualTwoStates(levelPatch,updatedPatch):
