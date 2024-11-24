@@ -28,5 +28,3 @@ def dfsSolving(currentState):
             print("_________finished DFS_______")
             break
 
-# Example usage
-# dfsSolving(initial_state)
