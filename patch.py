@@ -7,9 +7,11 @@ class Patch:
         #n to row number
         self.grid = [["." for _ in range(m)] for _ in range(n)]
         self.parent =None
+        self.cost=0
         self.goalValues={}
 
-
+    def __lt__(self, other):
+        return self.cost < other.cost
     def set_wall(self, x, y):
         self.grid[x][y] = "#"
 
