@@ -1,6 +1,9 @@
 import heapq
 from functions import getNextState
+import time
+import sys
 def ucs_solving (current):
+ start_time=time.time()
  heap=[]
  heapq.heapify(heap)
  visitedList=[]
@@ -19,9 +22,10 @@ def ucs_solving (current):
      path.reverse() 
      for i in path:
       i.print_patch()
-     print("visited list length ",len(visitedList ),)
-     print("path length:",len(path))
-     print("_________finished ucs_______")
+      end_time=time.time()
+     print("UCS:\nvisited set length:", len(visitedList),)
+     print("path length:", len(path),"\nspace:",sys.getsizeof(heap)+sys.getsizeof(visitedList)," bytes")
+     print(f"\ntime:,{end_time-start_time} seconds")
      break 
   if popedState[1].grid not in [state.grid for state in visitedList]:
     visitedList.append(popedState[1])

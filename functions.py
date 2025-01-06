@@ -1,4 +1,5 @@
 import copy
+from collections import Counter
 
 def extractMovingCellFromGrid(grid):
         points=[]
@@ -14,7 +15,9 @@ def extractMovingCellFromGrid(grid):
              
                 if item=="g":
                     points.append((indexRow,indexColumn))
-        MovingPoints= points+[None] * (4- len(points))      
+                if item=="p":
+                    points.append((indexRow,indexColumn))
+        MovingPoints= points+[None] * (5- len(points))      
            
         return MovingPoints
 def onpress(levelPatch,update):
@@ -92,3 +95,36 @@ def checkEqualTwoStates(levelPatch,updatedPatch):
      print("two state is equal")
  else:
       print("two state is not equal")  
+
+def hurestic(levelPatch):
+    dist = 0
+    points = extractMovingCellFromGrid(levelPatch.grid)
+    pointsWithoutNone = [point for point in points if point is not None]
+    goals = levelPatch.goalValues
+
+    visitedStates = set() 
+    for movingCell in pointsWithoutNone:
+        for goal in goals:
+            xT, yT = goal
+            xM, yM = movingCell
+            if (xM, yM) in visitedStates: 
+                dist += 1000  
+            else:
+                visitedStates.add((xM, yM))
+                if str(levelPatch.grid[xM][yM]).upper() == levelPatch.grid[xT][yT]:
+                    dist += abs(xM - xT) + abs(yM - yT)
+    
+    return dist
+def duplicateGoalInWhiteGoal(goalValues):
+    counts=Counter(goal for goal in goalValues)
+    return (True  for count in counts if count>1)
+def getAnotherGoals(newPatch,x,y):
+ 
+    Goals=["R","B","Y","G","P"]
+    PassingCells= list(set(Goals)-set([str(newPatch.grid[x][y]).upper()]))
+    firstPassingCell=    PassingCells[0]
+    secondPassingCell=    PassingCells[1]
+    thirdPassingCell=    PassingCells[2]
+    fourthPassingCell=    PassingCells[3]
+  
+    return firstPassingCell,secondPassingCell,thirdPassingCell,fourthPassingCell

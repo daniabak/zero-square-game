@@ -1,6 +1,9 @@
 from functions import getNextState
+import time
+import sys
 myVisitedList=[]
 def CorrectdfsRecursion(current):
+ start_time=time.time()
  if current == None or current.grid in (state.grid for state in myVisitedList):
         return
  myVisitedList.append(current)
@@ -12,9 +15,11 @@ def CorrectdfsRecursion(current):
   path.reverse()
   for i in path:
    i.print_patch()
-  print("visited list length ",len(myVisitedList ),)
-  print("path length:",len(path))
-  print("_________finished dfs recursion_______") 
+  end_time=time.time()
+  print("DFS RECURSION:\n")
+  print("path length:", len(path),"\nspace:",sys.getsizeof(myVisitedList)," bytes")
+  print(f"\ntime:,{end_time-start_time} seconds") 
+ 
   return
  nextStates=getNextState(current)
  for next in nextStates:

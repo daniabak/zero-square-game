@@ -236,10 +236,39 @@
 # if 1  in x :
 
 #  print(x)
-from collections import deque
-queue=deque([])
-queue.append("A")
-queue.append("b")
-queue.append("c")
-queue.popleft()
-print(queue)
+# from collections import deque
+# queue=deque([])
+# queue.append("A")
+# queue.append("b")
+# queue.append("c")
+# queue.popleft()
+# print(queue)
+# grid = [[1, 0, 0],
+#         [0, 1, 0],
+#         [0, 0, 1]]
+
+# # تحويل الشبكة إلى tuple of tuples لتصبح قابلة للتجزئة
+# hashable_grid = tuple(map(tuple, grid))
+
+# # إضافة الشبكة إلى set
+# visited_states = set()
+# visited_states.add(hashable_grid)
+
+# print(visited_states)
+# from collections import Counter
+
+# def has_duplicates(lst):
+#     counts = Counter(lst)
+# #     print(counts)
+#     return any(count > 1 for count in counts.values())
+
+# # Example usage
+# my_list = ["R", "F", "R",]
+# # print(has_duplicates(my_list))  # Output: True
+
+# dd=Counter(d for d in my_list)
+# s=1e20
+# print(s)
+dd={(3, 5): 'R', (2, 6): 'B'}
+ddd=(2, 6)
+print(ddd[0])
